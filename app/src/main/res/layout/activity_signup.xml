@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_bg"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/img_splash_logo"
+        app:layout_constraintBottom_toTopOf="@+id/prenom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/prenom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="@color/blanc"
+        android:gravity="center"
+        android:hint="Prenom"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/nom"
+        tools:layout_editor_absoluteX="4dp" />
+
+    <EditText
+        android:id="@+id/nom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="@color/blanc"
+        android:gravity="center"
+        android:hint="Nom"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/login"
+        tools:layout_editor_absoluteX="4dp" />
+
+    <EditText
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="@color/blanc"
+        android:gravity="center"
+        android:hint="Email"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/pass"
+        tools:layout_editor_absoluteX="12dp" />
+
+    <EditText
+        android:id="@+id/pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@color/blanc"
+        android:gravity="center"
+        android:hint="Mot de passe"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignup"
+        tools:layout_editor_absoluteX="4dp" />
+
+    <Button
+        android:id="@+id/btnSignup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@color/bleu"
+        android:onClick="onClickSignup"
+        android:padding="4dp"
+        android:text="CREER UN COMPTE"
+        android:textColor="@color/blanc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="4dp" />
+</android.support.constraint.ConstraintLayout>
