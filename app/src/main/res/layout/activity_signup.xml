@@ -23,6 +23,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/err"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:singleLine="true"
+        android:textAllCaps="false"
+        android:textColor="@color/rouge"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/prenom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <EditText
         android:id="@+id/prenom"
         android:layout_width="match_parent"
@@ -32,6 +51,8 @@
         android:gravity="center"
         android:hint="Prenom"
         android:padding="8dp"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
         app:layout_constraintBottom_toTopOf="@+id/nom"
         tools:layout_editor_absoluteX="4dp" />
 
@@ -44,6 +65,8 @@
         android:gravity="center"
         android:hint="Nom"
         android:padding="8dp"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
         app:layout_constraintBottom_toTopOf="@+id/login"
         tools:layout_editor_absoluteX="4dp" />
 
@@ -56,6 +79,8 @@
         android:gravity="center"
         android:hint="Email"
         android:padding="8dp"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
         app:layout_constraintBottom_toTopOf="@+id/pass"
         tools:layout_editor_absoluteX="12dp" />
 
@@ -67,7 +92,10 @@
         android:background="@color/blanc"
         android:gravity="center"
         android:hint="Mot de passe"
+        android:inputType="textPassword"
         android:padding="8dp"
+        android:singleLine="true"
+        android:imeOptions="actionGo"
         app:layout_constraintBottom_toTopOf="@+id/btnSignup"
         tools:layout_editor_absoluteX="4dp" />
 

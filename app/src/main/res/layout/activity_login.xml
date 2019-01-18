@@ -75,6 +75,7 @@
         android:inputType="textPassword"
         android:singleLine="true"
         android:padding="8dp"
+        android:imeOptions="actionGo"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

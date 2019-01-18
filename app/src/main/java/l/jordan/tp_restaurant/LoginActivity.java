@@ -6,10 +6,10 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.ArrayMap;
-import android.util.Log;
 import android.util.Pair;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,20 +24,32 @@ import java.util.regex.Pattern;
 public class LoginActivity extends AppCompatActivity implements WebService.Listener {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         SharedPreferences sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE);
         if (sharedPref.contains("isAuth") && sharedPref.getBoolean("isAuth", false)){
             new Handler().post(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(LoginActivity.this, CoreActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, RecipeActivity.class);
                     startActivity(intent);
                     finish();
                 }
             });
         }
         setContentView(R.layout.activity_login);
+        EditText edit_txt = findViewById(R.id.pass);
+
+        edit_txt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_GO) {
+                    findViewById(R.id.btnLogin).performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     public void onClickConnexion(View v){
@@ -49,7 +61,7 @@ public class LoginActivity extends AppCompatActivity implements WebService.Liste
             map.put("pass", pass);
             WebService.sendRequest("/connexion", map,this);
         }
-        else ((TextView)findViewById(R.id.err)).setText("Email or password is incorrect");
+        else failure("Votre login ou mot de passe incorrect");
     }
 
     public void onClickSignup(View v){
@@ -72,30 +84,25 @@ public class LoginActivity extends AppCompatActivity implements WebService.Liste
                 new Handler().post(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(LoginActivity.this, CoreActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, RecipeActivity.class);
                         startActivity(intent);
                         finish();
                     }
                 });
             }
             else if (obj.has("error")) pair=new Pair<>(false, obj.getString("error"));
-            else pair=new Pair<>(false, "An error occured");
+            else pair=new Pair<>(false, "Une erreur s'est produite");
         }
-        catch (JSONException e) {
+        catch (Exception e) {
             e.printStackTrace();
             pair=new Pair<>(false, e.getMessage());
         }
-        displayMessage(pair);
+        if (!pair.first)
+            failure(pair.second);
     }
 
     @Override
     public void failure(String response) {
-        ((TextView)findViewById(R.id.err)).setText("Email or password is incorrect");
-    }
-
-    private void displayMessage(Pair<Boolean, String> pair) {
-        if (pair.first){
-            Toast.makeText(this, pair.second, Toast.LENGTH_LONG).show();
-        }
+        ((TextView)findViewById(R.id.err)).setText(response);
     }
 }
